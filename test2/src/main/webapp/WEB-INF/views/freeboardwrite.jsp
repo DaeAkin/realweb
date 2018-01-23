@@ -8,7 +8,7 @@
 </head>
 <body>
 <form method="get" name="freeboardwrite" action="freeboardwrite">
-<jsp:include page="/WEB-INF/views/daumOpenEditor/editor_frame.jsp"></jsp:include>
+
 </form>
 </body>
 </html>

@@ -3,15 +3,27 @@
 
 <tiles-definitions>
 	<!-- base definition -->
-	<definition name="base-definition" template="/WEB-INF/views/tiles/layouts/defaultLayout.jsp"> <!-- 디폴트 레이아웃 만들기. -->
+	<definition name="default_layout" template="/WEB-INF/views/tiles/template/template.jsp"> <!-- 디폴트 레이아웃 만들기. -->
 	
-	<put-attribute name="title" value=""/>
-	<put-attribute name="header" value="/WEB-INF/views/tiles/template/디폴트헤더.jsp"/>
-	<put-attribute name="footer" value="/WEB-INF/views/tiles/template/디폴트푸.jsp"/>
+	<put-attribute name="container" value=""/>
+	<put-attribute name="header" value="/WEB-INF/views/tiles/layouts/menu.jsp"/>
+	<put-attribute name="sidebar" value="/WEB-INF/views/tiles/layouts/sidebar.jsp"/>
+	<put-attribute name="content" value=""/>
+	<put-attribute name="footer" value="/WEB-INF/views/tiles/layouts/footer.jsp"/>
+	
 	
 	</definition>
 	
-	
+	<!-- 메인 뷰 -->
+	<definition name="/*" extends="default_layout">
+	<put-attribute name="content" value="/WEB-INF/views/{{1}.jsp"/>
+	</definition>
 	<!-- Home Page -->
+	
+	<!-- member view -->
+	<definition name="/member" extends="default_layout">
+	<put-attribute name="member" value="/WEB-INF/views/memberCheck.jsp"/>
+	</definition>
+
 	
 </tiles-definitions>
