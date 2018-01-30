@@ -26,6 +26,12 @@ public class BoardController {
 
 	@Autowired
 	BoardService boardService;
+	
+	@RequestMapping(value = "/board/write")
+	public String boardwrite() {
+		
+		return "boardwrite";
+	}
 
 	// 게시글 리스트 조회.
 	@RequestMapping(value ="/board/list")

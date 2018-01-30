@@ -23,6 +23,14 @@
 	
 	<context:component-scan base-package="com.min.www.*" />
 	
+	
+   <!-- MultipartResolver -->
+    <beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <beans:property name="maxUploadSize" value="100000000"/>
+        <beans:property name="maxInMemorySize" value="100000000"/>
+    </beans:bean>
+
+
 	<!-- tiles3 -->
 	<beans:bean id="tilesViewResolver" class="org.springframework.web.servlet.view.tiles3.TilesViewResolver">
 		<beans:property name="order"  value="1"/>

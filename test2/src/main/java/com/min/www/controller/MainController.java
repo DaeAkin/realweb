@@ -19,7 +19,7 @@ public class MainController {
 	@RequestMapping("/")
 	public String hello() {
 		System.out.println("main 호출()");
-		return "main";
+		return "content";
 	}
 	
 	
