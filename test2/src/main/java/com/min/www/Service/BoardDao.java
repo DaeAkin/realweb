@@ -4,6 +4,8 @@ package com.min.www.Service;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.min.www.dto.BoardDto;
 import com.min.www.dto.BoardReplyDto;
 
@@ -14,6 +16,8 @@ public interface BoardDao {
 	 *  */
 
 	int regContent(Map<String, Object> paramMap);
+	
+	int insertFile(Map<String, Object> paramMap);
 	
 	int getContentCtn(Map<String,Object> paramMap);
 	
@@ -30,5 +34,7 @@ public interface BoardDao {
 	int getBoardCheck(Map<String, Object> paramMap);
 	
 	int delBoard(Map<String, Object> paramMap);
+	
+	
 	
 }

@@ -6,15 +6,22 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 @Controller
 public class UploadController {
 	
-	//파일 업로드하는 컨트롤러  클래스 메소드
 	@RequestMapping(value="/upload")
-	public void upload(HttpServletRequest request) {
+	public String upload() {
+		
+		return "upload";
+	}
+	//파일 업로드하는 컨트롤러  클래스 메소드
+	@RequestMapping(value="/uploads",method=RequestMethod.POST)
+	public void uploadexecute(HttpServletRequest request) {
+		
 		
 		MultipartHttpServletRequest multipartHttpServletRequest =
 				(MultipartHttpServletRequest)request;
@@ -28,7 +35,11 @@ public class UploadController {
 			multipartFile = multipartHttpServletRequest.getFile(iterator.next());
 			
 		if(multipartFile.isEmpty() == false) {
-			log
+			System.out.println("----------------file start------------");
+			System.out.println("name : " + multipartFile.getName());
+			System.out.println("filename : " + multipartFile.getOriginalFilename());
+			System.out.println("size : " + multipartFile.getSize());
+			System.out.println("----------------file end------------");
 		}
 		}
 	}

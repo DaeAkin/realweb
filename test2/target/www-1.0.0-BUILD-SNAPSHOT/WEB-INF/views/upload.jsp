@@ -8,24 +8,14 @@
 </head>
 <body>
 
-	<form action="InsertGoods" method="post" enctype="multipart/form-data">
-
-			상품명 : <input type="text" name="item"><br>
-
-			가격 : <input type="text" name="price"><br>
-
-			상세설명 : <br>
-
-			<textarea rows="5" cols="60"></textarea><br>
-
-			상품이미지 : <input type="file" name="img"><br> 
-
-			<input type="submit" value="등록"><br>
-
-			<input type="reset" value="취소"><br>
-
-		</form>
-
+    <!-- form enctype="multipart/form-data" 을 꼭 적어줘야 함 -->
+    <form class="form-horizontal" method="post" action="/uploads" enctype="multipart/form-data">
+        <!-- input type="file" 이라고 꼭 저어줘야 함 -->
+        <input type="file" " id="uploadFile" name="uploadFile" style="border:0px solid black;"/>
+        
+        <button type="submit" class="btn btn-default">등록</button>
+        <button type="reset" class="btn btn-default">취소</button>
+    </form>
 
 
 </body>

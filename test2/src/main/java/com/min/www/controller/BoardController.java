@@ -2,6 +2,7 @@ package com.min.www.controller;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.min.www.Service.BoardService;
 
@@ -119,30 +122,25 @@ public class BoardController {
 
 	}
 	
-	//AJAX호출 (게시글 등록)
+	/*AJAX호출 (게시글 등록)
+	 * and 파일 업로드 구현.
+	*/
 	@RequestMapping(value="/board/save",method=RequestMethod.POST)
-	@ResponseBody
-	public Object boardSave(@RequestParam Map<String, Object> paramMap) {
-		System.out.println("AJAX 호출 ( 게시글 등록) ");
+	public String boardSave(@RequestParam Map<String, Object> paramMap,HttpServletRequest request) throws Exception {
 		//리턴 값
-		Map<String, Object> retVal = new HashMap<String,Object>();
+		/*
 		//패스워드 암호화
 		ShaPasswordEncoder encoder = new ShaPasswordEncoder(256);
 		String password = encoder.encodePassword(paramMap.get("password").toString(), null);
 		paramMap.put("password", password);
-		
-		
+		*/
+
 		//정보입력
-		int result = boardService.regContent(paramMap);
+		boardService.regContent(paramMap,request);
 		
-		if(result>0) {
-			retVal.put("code", "OK");
-		} else {
-			retVal.put("code", "FAIL");
-			retVal.put("message", "패스워드를 확인해주세요.");
-		}
+	
 		
-		return retVal;
+		return "redirect:/board/list";
 	}
 	
 	

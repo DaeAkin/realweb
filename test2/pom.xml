@@ -35,6 +35,12 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 				
+			<!-- https://mvnrepository.com/artifact/org.apache.tomcat/annotations-api -->
+<dependency>
+    <groupId>org.apache.tomcat</groupId>
+    <artifactId>annotations-api</artifactId>
+    <version>6.0.13</version>
+</dependency>	
 		<!-- AspectJ -->
 		<dependency>
 			<groupId>org.aspectj</groupId>

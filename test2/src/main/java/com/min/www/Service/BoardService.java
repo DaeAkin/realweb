@@ -3,12 +3,14 @@ package com.min.www.Service;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.min.www.dto.BoardDto;
 import com.min.www.dto.BoardReplyDto;
 
 public interface BoardService {
 	
-	int regContent(Map<String, Object> paramMap);
+	int regContent(Map<String, Object> paramMap, HttpServletRequest request) throws Exception;
 	
 	int getContentCnt(Map<String, Object> paramMap);
 

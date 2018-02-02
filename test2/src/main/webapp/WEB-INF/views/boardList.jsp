@@ -10,6 +10,7 @@
 <title>게시판</title>
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-1.11.3.js"></script>
+<content tag="local_script">
 <script>
 	$(document).ready(function() {
 		
@@ -86,7 +87,9 @@
 		
 		
 	});
+	
 </script>
+</content>
 <style>
 .mouseOverHighlight {
 	border-bottom: 1px solid blue;

@@ -31,7 +31,7 @@
 	<classpathentry kind="lib" path="/Users/donghyeonmin/Desktop/프로그래밍 자료/apache-tomcat-8.5.27/lib/annotations-api.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5">
 		<attributes>
-			<attribute name="owner.project.facets" value="java"/>
+			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="src/main/webapp/lib/cos.jar"/>

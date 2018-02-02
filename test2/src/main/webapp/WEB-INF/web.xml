@@ -11,16 +11,17 @@
 		</filter-class>
 	</filter>
 	<!-- /* 패턴으로 들어오는 url은 sitemesh를 적용시키겠다는 내용이다. -->
-	<!-- 
+	
 	<filter-mapping>
 		<filter-name>sitemesh</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	 -->
+	
 	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath*:config/spring/context-*xml</param-value> 
+	
 	</context-param>
 	
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->

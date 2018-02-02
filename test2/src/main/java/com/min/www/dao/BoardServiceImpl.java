@@ -9,7 +9,10 @@ import com.min.www.Service.BoardDao;
 import com.min.www.Service.BoardService;
 import com.min.www.dto.BoardDto;
 import com.min.www.dto.BoardReplyDto;
+import com.min.www.util.FileUtils;
+
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
 @Service("boardService")
@@ -18,13 +21,10 @@ public class BoardServiceImpl implements BoardService{
 	@Resource(name="boardDao")
 	private BoardDao boardDao;
 	
+	@Resource(name="fileUtils")
+	private FileUtils FileUtils;
 	
-	
-	@Override
-	public int regContent(Map<String, Object> paramMap) {
-		// TODO Auto-generated method stub
-		return boardDao.regContent(paramMap);
-	}
+
 
 	@Override
 	public int getContentCnt(Map<String, Object> paramMap) {
@@ -105,6 +105,20 @@ public class BoardServiceImpl implements BoardService{
 	public int delBoard(Map<String, Object> paramMap) {
 		// TODO Auto-generated method stub
 		return boardDao.delBoard(paramMap);
+	}
+	@Override
+	public int regContent(Map<String, Object> paramMap ,HttpServletRequest request) throws Exception{
+		// TODO Auto-generated method stub
+		boardDao.regContent(paramMap);
+		System.out.println(paramMap.get("id"));
+		System.out.println("게시물 등록 완료");
+		
+		List<Map<String, Object>> list = FileUtils.parseInsertFileInfo(paramMap, request);
+		for(int i=0 , size=list.size(); i<size; i++) {
+			boardDao.insertFile(list.get(i));
+		}
+		
+		return 0;
 	}
 	
 	

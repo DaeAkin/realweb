@@ -3,6 +3,8 @@ package com.min.www.dao;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -18,11 +20,7 @@ public class BoardDaoImpl implements BoardDao{
 	private SqlSession sqlSession;
 	 
 
-	@Override
-	public int regContent(Map<String, Object> paramMap) {
-		// TODO Auto-generated method stub
-		return sqlSession.insert("insertContent",paramMap );	
-		}
+
 
 	@Override
 	public int getContentCtn(Map<String, Object> paramMap) {
@@ -70,6 +68,16 @@ public class BoardDaoImpl implements BoardDao{
 	public int delBoard(Map<String, Object> paramMap) {
 		// TODO Auto-generated method stub
 		return sqlSession.delete("deleteBoard",paramMap);
+	}
+	@Override
+	public int regContent(Map<String, Object> paramMap) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("insertContent",paramMap);
+	}
+	@Override
+	public int insertFile(Map<String, Object> paramMap) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("insertFile",paramMap);
 	}
 	
 }

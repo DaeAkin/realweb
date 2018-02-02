@@ -9,14 +9,13 @@
 <script type="text/javascript"
 	src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
-<script src="<c:url value="/resources/smarteditor/workspace/js/service/HuskyEZCreator.js"/>">
+<script src="<%=request.getContextPath() %>/resources/smarteditor/workspace/js/service/HuskyEZCreator.js">
 
 </script>
 <script>
-	$(document)
-			.ready(
-					function() {
+	$(document).ready(function() {
 
+ 
 						var oEditors = [];
 
 						var sLang = "ko_KR"; // 언어 (ko_KR/ en_US/ ja_JP/ zh_CN/ zh_TW), default = ko_KR
@@ -90,7 +89,8 @@
 								}
 							}
 							
-						})
+						)
+						
 					});
 	
 	//필수값 Check
@@ -106,18 +106,28 @@
 		}
 		return true;
 	}
+	
+
+	
+	
+
 </script>
 
 
 </head>
 <body>
 
-	<form action="/컨트롤러에 맵핑될 거 " method="post" id="frm">
+	<form action="<%=request.getContextPath() %>/board/save" method="post" id="frm" encType="multipart/form-data">
+	
+	<input type="text" id="title" name="title" placeholder="제목을 입력하세요.">
 		<textarea name="smarteditor" id="smarteditor" rows="10" cols="100"
 			style="width: 766px; height: 412px;">
 	
 	
 	</textarea>
+	<input type="file"  id="uploadFile" name="uploadFile" style="border:0px solid black;"/>
+	<input type="submit" value="제출">
+	
 	</form>
 
 
