@@ -12,6 +12,7 @@
 <script src="<%=request.getContextPath() %>/resources/smarteditor/workspace/js/service/HuskyEZCreator.js">
 
 </script>
+<content tag="local_script">
 <script>
 	$(document).ready(function() {
 
@@ -112,7 +113,7 @@
 	
 
 </script>
-
+</content>
 
 </head>
 <body>

@@ -19,6 +19,7 @@
 
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-1.11.3.js"></script>
+	<!-- 호출 jsp의 스크립트를 가져온다. -->
 <decorator:getProperty property="page.local_script"></decorator:getProperty>
 </head>
 <body>
