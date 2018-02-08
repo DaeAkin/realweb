@@ -6,20 +6,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
+<content tag="local_script">
+
 <script type="text/javascript"
 	src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
-<script src="<c:url value="/resources/smarteditor/workspace/js/service/HuskyEZCreator.js"/>">
+<script src="<%=request.getContextPath() %>/resources/smarteditor/workspace/js/service/HuskyEZCreator.js">
 
 </script>
+
 <script>
 	$(document).ready(function() {
 
-	
-		
-	
-	
-
+ 
 						var oEditors = [];
 
 						var sLang = "ko_KR"; // 언어 (ko_KR/ en_US/ ja_JP/ zh_CN/ zh_TW), default = ko_KR
@@ -116,7 +116,7 @@
 	
 
 </script>
-
+</content>
 
 </head>
 <body>

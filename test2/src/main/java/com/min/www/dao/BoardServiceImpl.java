@@ -26,7 +26,6 @@ public class BoardServiceImpl implements BoardService{
 	
 
 
-	@Override
 	public int getContentCnt(Map<String, Object> paramMap) {
 		// TODO Auto-generated method stub
 		return boardDao.getContentCtn(paramMap);
@@ -111,7 +110,7 @@ public class BoardServiceImpl implements BoardService{
 		// TODO Auto-generated method stub
 		boardDao.regContent(paramMap);
 		System.out.println(paramMap.get("id"));
-		System.out.println("게시물 등록 완료");
+		System.out.println("게시물 등록 중");
 		
 		List<Map<String, Object>> list = FileUtils.parseInsertFileInfo(paramMap, request);
 		for(int i=0 , size=list.size(); i<size; i++) {

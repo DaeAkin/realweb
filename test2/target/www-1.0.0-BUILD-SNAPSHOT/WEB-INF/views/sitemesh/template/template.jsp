@@ -20,8 +20,8 @@
 
 <div class="nav1">
     <ul>
-        <li><a href="#">회원가입</a></li>
-        <li><a href="#">로그인</a></li>
+        <li><a href="<%=request.getContextPath()%>/member">회원가입</a></li>
+        <li><a href="<%=request.getContextPath()%>/member/login">로그인</a></li>
     </ul>
 </div>
 
@@ -48,6 +48,20 @@
 
 <!-- content -->
 <decorator:body></decorator:body>
+
+<div class="footer">
+    <hr>
+        <ul>
+        <li>개인정보수집</li>
+        <li>이용 약관</li>
+        <li>게시물 정지</li>
+        <li>제휴 문의</li>
+    </ul>
+    <p>Email : kei890@naver.com</p>
+    <p>Copyright@Donghyeon Min</p>
+    
+</div>
+
 
 </body>
 </html>

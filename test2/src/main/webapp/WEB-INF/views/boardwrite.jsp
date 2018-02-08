@@ -6,17 +6,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
+<content tag="local_script">
+
 <script type="text/javascript"
 	src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
 <script src="<%=request.getContextPath() %>/resources/smarteditor/workspace/js/service/HuskyEZCreator.js">
 
 </script>
-<content tag="local_script">
+
 <script>
+		var filestart = 1;
+		
+		
 	$(document).ready(function() {
 
- 
 						var oEditors = [];
 
 						var sLang = "ko_KR"; // 언어 (ko_KR/ en_US/ ja_JP/ zh_CN/ zh_TW), default = ko_KR
@@ -92,6 +97,19 @@
 							
 						)
 						
+						//파일 추가 버튼
+						$("#uploadbutton").click(function() {
+							
+							filestart++;
+							$('<div><input type="file" name="uploadFile'+filestart+'" accept="image/*" /></div>').insertBefore(this);
+							
+							
+						
+						})
+						
+				
+					
+						
 					});
 	
 	//필수값 Check
@@ -126,7 +144,10 @@
 	
 	
 	</textarea>
-	<input type="file"  id="uploadFile" name="uploadFile" style="border:0px solid black;"/>
+	<div id="file">
+	<p><input type="file"  id="uploadFile" name="uploadFile" accept="image/*"/></p>
+	</div>
+	<input type="button" id="uploadbutton" name="uploadbutton" value="파일 더추가하기" >
 	<input type="submit" value="제출">
 	
 	</form>

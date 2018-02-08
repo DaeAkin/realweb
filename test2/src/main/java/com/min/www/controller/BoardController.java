@@ -134,6 +134,26 @@ public class BoardController {
 		String password = encoder.encodePassword(paramMap.get("password").toString(), null);
 		paramMap.put("password", password);
 		*/
+		
+		MultipartHttpServletRequest multipartHttpServletRequest =
+				(MultipartHttpServletRequest)request;
+		/*
+		 * Iterator는 자바의 컬렉션 프레임웍에서 컬렉션에 저장되어 있는 요소들을 
+		 * 읽어오는 방법을 표준화 하여쓴ㄴ데 그중 하나가 Iterator이다.
+		 */
+		Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
+		MultipartFile multipartFile = null;
+		while(iterator.hasNext()) {
+			multipartFile = multipartHttpServletRequest.getFile(iterator.next());
+			System.out.println("업로드된 파일 갯수 : " + iterator.toString());
+		if(multipartFile.isEmpty() == false) {
+			System.out.println("----------------file start------------");
+			System.out.println("name : " + multipartFile.getName());
+			System.out.println("filename : " + multipartFile.getOriginalFilename());
+			System.out.println("size : " + multipartFile.getSize());
+			System.out.println("----------------file end------------");
+		}
+		}
 
 		//정보입력
 		boardService.regContent(paramMap,request);

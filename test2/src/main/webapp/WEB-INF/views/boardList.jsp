@@ -69,7 +69,7 @@
 		});
 		
 		$("#write").click(function() {
-			location.href = "<%=request.getContextPath()%>/board/edit";
+			location.href = "<%=request.getContextPath()%>/board/write";
 		});
 		
 		$(document).on("click","button[name='page_move']", function(){
@@ -97,6 +97,10 @@
 	color: blue;
 	pointer-events: auto;
 }
+
+talbe {
+	border: 1px solid balck;
+}
 </style>
 
 </head>
@@ -114,7 +118,7 @@
 					</td>
 				</tr>
 			</table>
-			<table border="1" width="1200px">
+			<table width="1200px">
 				<tr>
 					<th width="50px">No</th>
 					<th width="850px">제목</th>

@@ -14,11 +14,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/main.css">
-<script src="<%=request.getContextPath() %>/resources/smarteditor/workspace/js/service/HuskyEZCreator.js">
-</script>
+
 
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-1.11.3.js"></script>
+	
+	
+	
 	<!-- 호출 jsp의 스크립트를 가져온다. -->
 <decorator:getProperty property="page.local_script"></decorator:getProperty>
 </head>
@@ -93,8 +95,9 @@
     
 <%@include file="/WEB-INF/decorator/layouts/footer.jsp" %>
 
-    
+  
+ 
 </div>
-</div>
+
 </body>
 </html>
