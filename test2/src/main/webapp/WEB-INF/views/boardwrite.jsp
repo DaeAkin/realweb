@@ -119,7 +119,8 @@
 		if(contents === '<p>&bnsp;<p>' || contents === '') { //기본적으로 아무것도 입력하지 않아도 값이 입력되어 있음.
 		
 			alert("내용을 입력하세요.");
-			oEditors.getById['smarteditor'].exec('FOCUS');
+			oEditors.getById['smart
+				editor'].exec('FOCUS');
 			return false;
 			
 		}
