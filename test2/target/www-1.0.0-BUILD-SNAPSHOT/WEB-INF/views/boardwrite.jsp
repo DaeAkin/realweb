@@ -17,9 +17,11 @@
 </script>
 
 <script>
+		var filestart = 1;
+		
+		
 	$(document).ready(function() {
 
- 
 						var oEditors = [];
 
 						var sLang = "ko_KR"; // 언어 (ko_KR/ en_US/ ja_JP/ zh_CN/ zh_TW), default = ko_KR
@@ -95,6 +97,19 @@
 							
 						)
 						
+						//파일 추가 버튼
+						$("#uploadbutton").click(function() {
+							
+							filestart++;
+							$('<div><input type="file" name="uploadFile'+filestart+'" accept="image/*" /></div>').insertBefore(this);
+							
+							
+						
+						})
+						
+				
+					
+						
 					});
 	
 	//필수값 Check
@@ -104,7 +119,8 @@
 		if(contents === '<p>&bnsp;<p>' || contents === '') { //기본적으로 아무것도 입력하지 않아도 값이 입력되어 있음.
 		
 			alert("내용을 입력하세요.");
-			oEditors.getById['smarteditor'].exec('FOCUS');
+			oEditors.getById['smart
+				editor'].exec('FOCUS');
 			return false;
 			
 		}
@@ -129,7 +145,10 @@
 	
 	
 	</textarea>
-	<input type="file"  id="uploadFile" name="uploadFile" style="border:0px solid black;"/>
+	<div id="file">
+	<p><input type="file"  id="uploadFile" name="uploadFile" accept="image/*"/></p>
+	</div>
+	<input type="button" id="uploadbutton" name="uploadbutton" value="파일 더추가하기" >
 	<input type="submit" value="제출">
 	
 	</form>

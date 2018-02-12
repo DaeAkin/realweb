@@ -11,8 +11,8 @@
 
 <div class="nav1">
     <ul>
-        <li><a href="#">회원가입</a></li>
-        <li><a href="#">로그인</a></li>
+        <li><a href="<%=request.getContextPath()%>/member">회원가입</a></li>
+        <li><a href="<%=request.getContextPath()%>/member/login">로그인</a></li>
     </ul>
 </div>
 
@@ -26,10 +26,9 @@
                 <li>아아아아아</li>
             </ul>
         </li>
-        <li>게시판
+        <li>게시판11ㄴㅇㄹㄴㅇㄹㅇㄹㄴㅇㄴㄹㅇㄹㄴㅇㄹㄴㄴㅇ
             <ul class="dropbox">
-                <li>자유게시판
-                </li>
+                <li>자유게시판</li>
                 <li>하단메뉴 2</li>
             </ul></li>
         <li>메뉴 3</li>

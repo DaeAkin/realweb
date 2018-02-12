@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.min.www.Service.BoardService;
+import com.min.www.util.TimeUtil;
 
 
 
@@ -29,6 +31,9 @@ public class BoardController {
 
 	@Autowired
 	BoardService boardService;
+	
+	@Resource(name="timeUtil")
+	private TimeUtil timeUtil;
 	
 	@RequestMapping(value = "/board/write")
 	public String boardwrite() {
@@ -73,7 +78,7 @@ public class BoardController {
 		model.addAttribute("totalCnt", totalCnt); // 전체 게시물수
 		model.addAttribute("totalPage", totalPage); // 페이지 네비게이션에 보여줄 리스트 수
 		model.addAttribute("boardList", boardService.getContentList(paramMap)); // 검색
-		System.out.println(boardService.getContentList(paramMap));
+		timeUtil.TimeUtilChanger(paramMap);
 
 		return "boardList";
 

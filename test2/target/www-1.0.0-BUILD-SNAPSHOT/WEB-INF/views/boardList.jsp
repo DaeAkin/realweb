@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>​
 <%@ page session="false"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -97,6 +98,18 @@
 	color: blue;
 	pointer-events: auto;
 }
+
+    #board tr th {
+        border: 1px solid black;
+    }
+#board tr td{
+	border: 1px solid black;
+}
+
+    #board tr:nth-child(odd) td {
+        background: rgb(208, 215, 226);
+    }
+
 </style>
 
 </head>
@@ -114,13 +127,12 @@
 					</td>
 				</tr>
 			</table>
-			<table border="1" width="1200px">
+			<table id="board" width="1200px">
 				<tr>
-					<th width="50px">No</th>
-					<th width="850px">제목</th>
-					<th width="100px">작성</th>
+					<th width="40px" style="word-break: break-all">No</th>
+					<th width="890px" >제목</th>
+					<th width="20px">작성자</th>
 					<th width="50px">작성일</th>
-
 				</tr>
 				<c:choose>
 					<c:when test="${fn:length(boardList) == 0}">
@@ -132,12 +144,15 @@
 					<c:otherwise>
 						<c:forEach var="boardList" items="${boardList }" varStatus="status">
 							<tr>
-								<td align="center">${boardList.id}</td>
-								<td><a name="writer" class="mouseOverHighlight" content_id="${boardList.id }">${boardList.title }</a></td>
-								<td align="center">${boardList.writer }</td>
-								<td align="center">${boardList.writetime }</td>
+								<td width="40px" style="word-break: break-all" align="center">${boardList.id}</td>
+								<td style="padding-left: 20px"><a name="writer" class="mouseOverHighlight" content_id="${boardList.id }">${boardList.title }</a></td>
+								<td  width="100px" align="center" style="word-break: break-all">${boardList.writer }</td>
+								<td width="100px" style="word-break: break-all" align="center">
+								</td>
 
 							</tr>
+                            
+                        
 						</c:forEach>
 					</c:otherwise>
 				</c:choose>

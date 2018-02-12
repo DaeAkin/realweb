@@ -5,6 +5,7 @@
 /Users/donghyeonmin/git/realweb/test2/src/main/java/com/min/www/dto/PagingDto.java
 /Users/donghyeonmin/git/realweb/test2/src/main/java/com/min/www/dao/BoardDaoImpl.java
 /Users/donghyeonmin/git/realweb/test2/src/main/java/com/min/www/controller/UploadController.java
+/Users/donghyeonmin/git/realweb/test2/src/main/java/com/min/www/util/TimeUtil.java
 /Users/donghyeonmin/git/realweb/test2/src/main/java/com/min/www/util/GetBoardDetailList.java
 /Users/donghyeonmin/git/realweb/test2/src/main/java/com/min/www/util/CommonUtils.java
 /Users/donghyeonmin/git/realweb/test2/src/main/java/com/min/www/Service/BoardDao.java
