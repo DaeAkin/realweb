@@ -398,6 +398,22 @@
 </script>
 </head>
 <style>
+    
+    #boardmain tr:nth-child(2) td {
+        border-bottom: 0.5px solid black;
+        padding: 10px;
+    }
+    
+    
+        #boardmain tr:nth-child(3) td {
+        border-bottom: 0.5px solid black;
+        padding: 30px 10px;
+    }
+    
+            #boardmain tr:nth-child(4) td {
+        border-bottom: 0.5px solid black;
+        padding: 10px;
+    }
 
 </style>
 <body>
@@ -405,29 +421,32 @@
 	<div align="center">
 		<br>
 		<br>
-		<table border="1" width="1200px" >
+		<table width="1200px" id="boardmain" >
 			<tr>
 				<td colspan="2" align="right">
-					<input type="password" id="password" name="password" style="width:200px;" maxlength="10" placeholder="패스워드"/>
 					<button id="modify" name="modify">글 수정</button>
 					<button id="delete" name="delete">글 삭제</button>
 				</td>
 			</tr>
 			<tr>
+                <td colspan="2">
+					작성자 : ${boardView.writer }
+				</td>
+            </tr>
+            <tr>    
 				<td width="900px">
 					제목 : ${boardView.title }
 				</td>
-				<td>
-					작성자 : ${boardView.writer }
-				</td>
-			</tr>
+            </tr>
+				
+			
 			<tr height="500px">
 				<td colspan="2" valign="top">
 					${boardView.content }
 				</td>
 			</tr>
 		</table>
-		<table border="1" width="1200px" id="reply_area">
+		<table id="boardreply" width="1200px">
 			<tr reply_type="all"> <!--  뒤에 댓글 붙이기 쉽게 선언  -->
 				<td colspan="4"></td>
 			</tr>
@@ -452,28 +471,23 @@
 				</tr>        
 			</c:forEach>
 			</table>
-			<table border="1" width="1200px" bordercolor="#46AA46">
-				<tr>
-					<td width="500px">
-						이름 : <input type="text" id="reply_writer" name="reply_writer" style="width:170px;" maxlength="10" placeholder="작성자"/>
-						패스워드 : <input type="password" id="reply_password" name="reply_password" style="width:170px;" maxlength="10" placeholder="패스워드"/>
+			<table id="boardreplywrite" width="1200px" bordercolor="#46AA46">
+                <tr>
+                    <td>사용자</td>
+                    <td>
+						<textarea id="reply_content" name="reply_content" rows="4" cols="100" placeholder="댓글을 입력하세요."></textarea>
+					</td>
+                    
+                    <td width="500px">
+			
 						<button id="reply_save" name="reply_save">댓글 등록 </button>
 					</td>
-				</tr>
-				<tr>
-					<td>
-						<textarea id="reply_content" name="reply_content" rows="4" cols="50" placeholder="댓글을 입력하세요."></textarea>
-					</td>
-				</tr>
+				
+                    
+                </tr>
+
 			</table>
-			<table width="1200px">
-				<tr>
-					<td align="right">
-						<button id="list" name="list">게시판 </button>
-					</td>
-				</tr>
-			
-			</table>
+		
 	</div>
 	
 

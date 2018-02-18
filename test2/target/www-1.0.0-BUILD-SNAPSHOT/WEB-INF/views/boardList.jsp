@@ -75,7 +75,7 @@
 		
 		$(document).on("click","button[name='page_move']", function(){
 			
-			var visiblePages = 10; // 리스트 보여줄 페이지
+			var visiblePages = 30; // 리스트 보여줄 페이지
 			
 			$('#startPage').val($(this).attr("start_page")); // 보고 싶은 페이지
 			$('#visiblePages').val(visiblePages);

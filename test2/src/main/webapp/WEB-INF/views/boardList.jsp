@@ -75,7 +75,7 @@
 		
 		$(document).on("click","button[name='page_move']", function(){
 			
-			var visiblePages = 10; // 리스트 보여줄 페이지
+			var visiblePages = 30; // 리스트 보여줄 페이지
 			
 			$('#startPage').val($(this).attr("start_page")); // 보고 싶은 페이지
 			$('#visiblePages').val(visiblePages);
@@ -105,10 +105,30 @@
 #board tr td{
 	border: 1px solid black;
 }
+    #board tr td a:link {
+        color: black;
+        text-decoration: none;
+    }
+    
+    #board tr td a:visited {
+        color: blue;
+        text-decoration: underline;
+    }
 
+    
+    #board tr td {
+        text-decoration: none;
+    }
+    #board tr td a:hover, #board tr td a:focus{
+        	
+        color: red;
+        text-decoration-color: black;
+        text-decoration: underline
+    }
     #board tr:nth-child(odd) td {
         background: rgb(208, 215, 226);
     }
+
 
 </style>
 
@@ -144,10 +164,10 @@
 					<c:otherwise>
 						<c:forEach var="boardList" items="${boardList }" varStatus="status">
 							<tr>
-								<td width="40px" style="word-break: break-all" align="center">${boardList.id}</td>
-								<td style="padding-left: 20px"><a name="writer" class="mouseOverHighlight" content_id="${boardList.id }">${boardList.title }</a></td>
-								<td  width="100px" align="center" style="word-break: break-all">${boardList.writer }</td>
-								<td width="100px" style="word-break: break-all" align="center">
+								<td width="40px" style="word-break: break-all; font-size: 8pt"  align="center">${boardList.id}</td>
+								<td style="padding-left: 20px"><a name="writer" content_id="${boardList.id }">${boardList.title }</a></td>
+								<td  width="100px" align="center" style="word-break: break-all; font-size: 9pt">${boardList.writer }</td>
+								<td width="100px" style="word-break: break-all; font-size: 8pt" align="center">${boardList.writetime}
 								</td>
 
 							</tr>

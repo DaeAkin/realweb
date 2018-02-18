@@ -9,12 +9,12 @@
 		)values (
 		#{title},
 		'admin',
-		#{content}
+		#{smarteditor}
 		
 		) on duplicate key update 
 		title = #{title},
 		writer = 'admin',
-		content = #{content}
+		content = #{smarteditor}
 	
 	</insert>
 	

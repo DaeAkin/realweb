@@ -44,13 +44,13 @@ public class BoardController {
 	// 게시글 리스트 조회.
 	@RequestMapping(value ="/board/list")
 	public String boardList(@RequestParam Map<String, Object> paramMap, Model model) {
-
+		System.out.println("Okky :" + paramMap.get("startPage"));
 		// 조회 하려는 페이지
 		int startPage = (paramMap.get("startPage") != null ? Integer.parseInt(paramMap.get("startPage").toString()) : 1);
 		// 한페이지에 보여줄 리스트 수
 		int visiblePages = (paramMap.get("visiblePages") != null
 				? Integer.parseInt(paramMap.get("visiblePages").toString())
-				: 10);
+				: 30);
 		// 일단 전체 건수를 가져온다.
 		int totalCnt = boardService.getContentCnt(paramMap);
 		
@@ -78,7 +78,6 @@ public class BoardController {
 		model.addAttribute("totalCnt", totalCnt); // 전체 게시물수
 		model.addAttribute("totalPage", totalPage); // 페이지 네비게이션에 보여줄 리스트 수
 		model.addAttribute("boardList", boardService.getContentList(paramMap)); // 검색
-		timeUtil.TimeUtilChanger(paramMap);
 
 		return "boardList";
 

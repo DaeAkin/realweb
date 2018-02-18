@@ -10,6 +10,7 @@ import com.min.www.Service.BoardService;
 import com.min.www.dto.BoardDto;
 import com.min.www.dto.BoardReplyDto;
 import com.min.www.util.FileUtils;
+import com.min.www.util.TimeUtil;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +25,9 @@ public class BoardServiceImpl implements BoardService{
 	@Resource(name="fileUtils")
 	private FileUtils FileUtils;
 	
+	@Resource(name="timeUtil")
+	private TimeUtil timeUtil;
+	
 
 
 	public int getContentCnt(Map<String, Object> paramMap) {
@@ -34,7 +38,8 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public List<BoardDto> getContentList(Map<String, Object> paramMap) {
 		// TODO Auto-generated method stub
-		return boardDao.getContentList(paramMap);
+		
+		return timeUtil.TimeUtilChanger(paramMap);
 	}
 
 	@Override
@@ -110,6 +115,7 @@ public class BoardServiceImpl implements BoardService{
 		// TODO Auto-generated method stub
 		boardDao.regContent(paramMap);
 		System.out.println(paramMap.get("id"));
+		System.out.println("게시물 내용 : " +paramMap.get("smarteditor"));
 		System.out.println("게시물 등록 중");
 		
 		List<Map<String, Object>> list = FileUtils.parseInsertFileInfo(paramMap, request);

@@ -90,9 +90,9 @@
 								oEditors.getById["smarteditor"].exec("UPDATE_CONTENTS_FIELD", []);
 								
 								//이 부분에 에디터 validation 검증
-								if(validation()) {
-									$("frm").submit();
-								}
+								
+									$("#frm").submit();
+								
 							}
 							
 						)
@@ -119,8 +119,7 @@
 		if(contents === '<p>&bnsp;<p>' || contents === '') { //기본적으로 아무것도 입력하지 않아도 값이 입력되어 있음.
 		
 			alert("내용을 입력하세요.");
-			oEditors.getById['smart
-				editor'].exec('FOCUS');
+			oEditors.getById['smarteditor'].exec('FOCUS');
 			return false;
 			
 		}
@@ -149,7 +148,7 @@
 	<p><input type="file"  id="uploadFile" name="uploadFile" accept="image/*"/></p>
 	</div>
 	<input type="button" id="uploadbutton" name="uploadbutton" value="파일 더추가하기" >
-	<input type="submit" value="제출">
+	<input type="button" id="savebutton" name="savebutton" value="제출">
 	
 	</form>
 
