@@ -32,6 +32,7 @@ public class BoardDaoImpl implements BoardDao{
 	public List<BoardDto> getContentList(Map<String, Object> paramMap) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("selectContent", paramMap);
+	
 	}
 
 	@Override

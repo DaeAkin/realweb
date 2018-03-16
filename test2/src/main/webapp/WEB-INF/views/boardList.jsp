@@ -134,6 +134,11 @@
 
 </head>
 <body>
+
+${name }
+${nickname }asd
+
+asdasda
 	<form class="form-inline" id="frmSearch" action="<%=request.getContextPath()%>/board/list">
 		<input type="hidden" id="startPage" name="startPage" value="">
 		<!-- 페이징을 위한 hidden 타입 추가 -->

@@ -14,6 +14,7 @@ import com.min.www.util.TimeUtil;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
 @Service("boardService")
@@ -113,15 +114,18 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public int regContent(Map<String, Object> paramMap ,HttpServletRequest request) throws Exception{
 		// TODO Auto-generated method stub
+		HttpSession session = request.getSession();
+		String writer = (String)session.getAttribute("nickname");
+		paramMap.put("writer", writer);
 		boardDao.regContent(paramMap);
 		System.out.println(paramMap.get("id"));
 		System.out.println("게시물 내용 : " +paramMap.get("smarteditor"));
 		System.out.println("게시물 등록 중");
 		
-		List<Map<String, Object>> list = FileUtils.parseInsertFileInfo(paramMap, request);
-		for(int i=0 , size=list.size(); i<size; i++) {
-			boardDao.insertFile(list.get(i));
-		}
+//		List<Map<String, Object>> list = FileUtils.parseInsertFileInfo(paramMap, request);
+//		for(int i=0 , size=list.size(); i<size; i++) {
+//			boardDao.insertFile(list.get(i));
+//		}
 		
 		return 0;
 	}

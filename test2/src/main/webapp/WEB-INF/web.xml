@@ -31,8 +31,7 @@
 
 
 
-	출처: http://jijs.tistory.com/entry/Spring-Framework-에서-UTF8-한글-설정
-	[나살고싶어~]
+
 	<!-- Sitemesh -->
 	<filter>
 		<filter-name>sitemesh</filter-name>
@@ -52,6 +51,10 @@
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
+	<listener>
+		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
 	</listener>
 
 	<!-- Processes application requests -->

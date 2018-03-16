@@ -71,6 +71,75 @@
             $("#membercheck").submit();
             
         })
+        
+        
+        /* 닉네임 중복확인 */
+        
+        
+        
+        $("#memberNickcheck").click(function() {
+    	 		
+       	//버튼식으로 할 예정. 실시간으로 하면 DB에 무리에 갈듯하다.
+       	//ajax로 아이디 검수후 알려주기.
+       	
+       	console.log("클릭 되었니?");
+       	
+       if($("#id").val().trim() == "") {
+    	   	alert("닉네임을 입력해주세요");
+    	   	return false;
+       } 
+       	
+       	
+       	var objParams = {
+       			nickname			:	$("#nickname").val()
+       	};
+       	
+       	//ajax 호출
+       	$.ajax ({
+       		url			:	"<%=request.getContextPath()%>/member/nickCheck",
+       		dataType		:	"json",
+       		contentType	:	"application/x-www-form-urlencoded; charset=UTF-8",
+       		type			:	"post",
+       		async		:	false, //동기식으로 처리하는 방법 동기식 false, 비동기식 true
+       		/*동기식으로 처리하면 
+       		[Deprecation] Synchronous XMLHttpRequest on the main thread is 
+       		deprecated because of its detrimental effects to the end user's
+       		experience. For more help, check https://xhr.spec.whatwg.org/. 
+       		이런 알림이 뜬다.
+       		*/
+       		data			:	objParams,
+       		success		:	function(reVal) {
+       			
+       			if(reVal.code != "OK") {
+       				alert("사용불가능한 닉네임입니다. 다른닉네임을 입력해주세요.");
+       				
+       				console.log("사용 불가능한 닉.");
+       			} else {
+       				
+       				// ajax가 성공하면 할일
+       				alert("사용가능한 닉네임입니다.");
+       			
+       							console.log("사용 가능한 아이디.");
+       		} 
+       			},
+       		error		:	function(request, status, error) {
+       			console.log("AJAX_ERROR");
+       		}
+       		
+       			
+       		
+       		
+       		
+       	});
+     
+       	
+       })
+        
+           $("#memberSubmit").click(function() {
+            
+            $("#membercheck").submit();
+            
+        })
     })
     
     
@@ -142,6 +211,7 @@
     <form id="memberCheck" action="<%=request.getContextPath()%>/member/check" method="POST">
     <table id="memberC">
         <tr><td>아이디</td> <td><input type="text" id="id" name="id" length="12" placeholder="아이디">    <input type="button" value="아이디 중복확인" id="memberIdcheck" name="memberIdcheck"> </td></tr>
+        <tr><td>닉네임</td> <td><input type="text" id="id" name="nickname" length="12" placeholder="닉네임">    <input type="button" value="닉네임 중복확인" id="memberNickcheck" name="memberNickcheck"> </td></tr>
         <tr><td> 비밀번호 </td> <td><input type="password" id="password" name="password" placeholder="패스워드" oninput="checkPwd()"> </td></tr>
         <tr> <td> 비밀번호 확인  </td><td><input type="password" id="password1" name="password1" placeholder="패스워드" oninput="checkPwd()" >  <span id="message"> </span></td>
         <tr> <td> e-mail</td><td> <input type="email" id="email" name="email" placeholder="이메일"></td>

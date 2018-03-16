@@ -8,12 +8,12 @@
 			content
 		)values (
 		#{title},
-		'admin',
+		#{writer},
 		#{smarteditor}
 		
 		) on duplicate key update 
 		title = #{title},
-		writer = 'admin',
+		writer = '{writer}',
 		content = #{smarteditor}
 	
 	</insert>
@@ -34,7 +34,7 @@
 			#{ORIGINAL_FILE_NAME},
 			#{STORED_FILE_NAME},
 			#{FILE_SIZE},
-			'Admin'
+			#{NICKNAME}
 		)
 		
 	</insert>
@@ -77,15 +77,15 @@
 		parent_id,
 		depth,
 		reply_content,
-		reply_writer,
-		reply_password
+		reply_writer
+
 	)values (
 		#{board_id},
 		#{parent_id},
 		#{depth},
 		#{reply_content},
-		#{reply_writer},
-		#{reply_password}
+		#{reply_writer}
+	
 	 )
 	</insert>
 	<select id="selectBoardReplyList" resultType="com.min.www.dto.BoardReplyDto" parameterType="java.util.HashMap">

@@ -3,20 +3,44 @@ package com.min.www.dto.member;
 public class MemberDto {
 	String Mnumber;
 	String id;
+	String nickname;
 	String password;
 	String email;
+	String imageurl;
+	
 	
 	
 	public MemberDto() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public MemberDto(String Mnumber,String id, String password, String email) {
+	public MemberDto(String Mnumber,String id,String nickname, String password, String email, String imageurl) {
 		// TODO Auto-generated constructor stub
 		Mnumber = this.Mnumber;
+		nickname = this.nickname;
 		id = this.id;
 		password = this.password;
 		email = this.email;
+		imageurl = this.imageurl;
+	}
+	
+	
+	
+
+	public String getImageurl() {
+		return imageurl;
+	}
+
+	public void setImageurl(String imageurl) {
+		this.imageurl = imageurl;
+	}
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 
 	public String getMnumber() {

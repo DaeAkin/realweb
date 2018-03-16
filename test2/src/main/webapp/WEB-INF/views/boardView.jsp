@@ -19,17 +19,7 @@
 		$("#reply_save").click(function(){
 			
 			//널 검사
-			if($("#reply_writer").val().trim() == "") {
-				alert("이름을 입력하세요.");
-				$("#reply_writer").focus();
-				return false;
-			}
 			
-			if($("#reply_password").val().trim() == "") {
-				alert("패스워드를 입력하세요.");
-				$("#reply_password").focus();
-				return false;
-			}
 			
 			if($("#reply_content").val().trim() == "") {
 				alert("댓글 내용을 입력하세요.");
@@ -39,12 +29,12 @@
 			
 			var reply_content = $("#reply_content").val().replace("\n", "<br>"); //개행 처리
 			
+			
 			//값 셋팅
 			var objParams = {
 					board_id				:	$("#board_id").val(),
 					parent_id			:	"0",
 					depth				:	"0",
-					reply_writer			:	$("#reply_writer").val(),
 					reply_password		:	$("#reply_password").val(),
 					reply_content		:	reply_content
 					
@@ -100,9 +90,9 @@
 				}
 				
 				//댓글 초기화
-				$("#reply_writer").val("");
-				$("#reply_password").val("");
+				
 				$("#reply_content").val("");
+				location.reload();
 		});
 		
 		//댓글 삭제 (다시 리뷰하기)
@@ -182,9 +172,6 @@
                 '   </td>'+
                 '   <td width="100px">'+
                 '       <input type="text" name="reply_reply_writer" style="width:100%;" maxlength="10" placeholder="작성자"/>'+
-                '   </td>'+
-                '   <td width="100px">'+
-                '       <input type="password" name="reply_reply_password" style="width:100%;" maxlength="10" placeholder="패스워드"/>'+
                 '   </td>'+
                 '   <td>'+
                 '       <button name="reply_reply_save" reply_id="'+reply_id+'">등록</button>'+
@@ -459,9 +446,7 @@
 					<td width="100px">
 						${replyList.reply_writer }
 					</td>
-					<td width="100px">
-						<input type="password" id="reply_password_${replyList.reply_id }" style="width:100px;" maxlength="10" placeholder="패스워드"/>
-					</td>
+					
 					<td>
 						<button name="reply_del" reply_id ="${replyList.reply_id }">삭제</button>
 						<c:if test="${replyList.depth != '1' }">

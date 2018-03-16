@@ -97,6 +97,14 @@
 							
 						)
 						
+						//텍스트 에리아 확인
+						$("#refresh").click(function() {
+							oEditors.getById["smarteditor"].exec("PASTE_HTML", ["hihihihihihi"]);
+							
+							})
+						
+						
+						
 						//파일 추가 버튼
 						$("#uploadbutton").click(function() {
 							
@@ -106,6 +114,41 @@
 							
 						
 						})
+        
+                        //파일업로드 ajax 
+                        $("#ajaxUpload").on("click",function(event) {
+                            event.preventDefault();
+                            var formData = new FormData();
+                            formData.append("file",$("#uploadFile")[0].files[0]);
+                            
+                            
+                            $.ajax({
+                                
+                                type            :       "post",
+                                url             :       "<%=request.getContextPath()%>/board/upload",
+                                data            :       formData,
+                                dataType        :       "text",
+                                processData     :       false,
+                                contentType     :       false,
+                                success         :       function(data) {
+                                    
+                                var str = "";
+                                var textstr = "";
+                                
+                                str = "<div><a href='<%=request.getContextPath()%>/board/displayFile?fileName="+data+"'></div>";
+                                str += "<img src='<%=request.getContextPath()%>/board/displayFile?fileName="+data+"'></a>";
+                                
+                                textstr = "<img src='<%=request.getContextPath()%>/board/displayFile?fileName="+data+"'></a>";
+                                alert(data);
+                                
+                                    
+                                $(".uploadList").append(str);
+                                oEditors.getById["smarteditor"].exec("PASTE_HTML", [textstr]);
+                                }
+                            })
+                            
+                            
+                        })
 						
 				
 					
@@ -146,9 +189,13 @@
 	</textarea>
 	<div id="file">
 	<p><input type="file"  id="uploadFile" name="uploadFile" accept="image/*"/></p>
+    <p><input type="button" id="ajaxUpload" name="ajaxUpload" value="사진 업로드 ajax 제출."/></p>
 	</div>
 	<input type="button" id="uploadbutton" name="uploadbutton" value="파일 더추가하기" >
 	<input type="button" id="savebutton" name="savebutton" value="제출">
+	
+	<div class="uploadList"> uploadList 부분 . </div>
+	<div><input type="button" id="refresh" name="refresh" value="textarea 확인용도"/></div>
 	
 	</form>
 

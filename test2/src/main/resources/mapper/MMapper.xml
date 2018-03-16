@@ -29,7 +29,9 @@
 <select id="getMember" parameterType="java.util.HashMap" resultType="com.min.www.dto.member.MemberDto">
 	select
 		id,
-		password
+		password,
+		nickname,
+		email
 	from
 		member
 	where id=#{id}
@@ -38,4 +40,24 @@
 
 </select>
 
+<select id="memberNickCheck" parameterType="java.util.HashMap" resultType="java.lang.Integer">
+	select
+		count(nickname)
+	from
+		member
+	where nickname=#{nickname}
+</select>
+
+<insert id="insertImage" parameterType="java.lang.String" useGeneratedKeys="true" keyProperty="id">
+
+	insert into member (
+	    id,
+		IMAGEURL
+	) values (
+	    #{id},
+		#{IMAGEURL}
+	) on duplicate key update
+	id = #{id},
+	IMAGEURL = #{IMAGEURL}
+</insert>
 </mapper>

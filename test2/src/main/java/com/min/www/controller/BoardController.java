@@ -1,5 +1,7 @@
 package com.min.www.controller;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -7,8 +9,14 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +28,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.min.www.Service.BoardService;
+import com.min.www.util.FileUtils;
+import com.min.www.util.MediaUtils;
 import com.min.www.util.TimeUtil;
 
 
@@ -28,12 +38,19 @@ import com.min.www.util.TimeUtil;
 
 @Controller
 public class BoardController {
-
+	
+	
 	@Autowired
 	BoardService boardService;
 	
 	@Resource(name="timeUtil")
 	private TimeUtil timeUtil;
+	
+	@Resource
+	private FileUtils fileutils;
+	
+	@Resource(name="uploadPath")
+	String uploadPath;
 	
 	@RequestMapping(value = "/board/write")
 	public String boardwrite() {
@@ -131,6 +148,7 @@ public class BoardController {
 	*/
 	@RequestMapping(value="/board/save",method=RequestMethod.POST)
 	public String boardSave(@RequestParam Map<String, Object> paramMap,HttpServletRequest request) throws Exception {
+		
 		//리턴 값
 		/*
 		//패스워드 암호화
@@ -167,21 +185,111 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 	
+	//원래 업로드컨트롤러.
+	/*
+	@ResponseBody
+	@RequestMapping(value="/board/upload", method=RequestMethod.POST )
+	public String uploadAjax(HttpServletRequest request) throws Exception {
+		MultipartHttpServletRequest multipartHttpServletRequest =
+				(MultipartHttpServletRequest)request;
+		System.out.println("업로드 시작. ");
+		System.out.println("업로드된 파일 이름 : " + multipartHttpServletRequest.getFileNames().toString());
+		Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
+		System.out.println("iterator.hasNext() :" + iterator.hasNext());
+		MultipartFile multipartFile = null;
+		while(iterator.hasNext()) {
+			multipartFile = multipartHttpServletRequest.getFile(iterator.next());
+			System.out.println("업로드된 파일 갯수 : " + iterator.toString());
+		if(multipartFile.isEmpty() == false) {
+			System.out.println("----------------file start------------");
+			System.out.println("name : " + multipartFile.getName());
+			System.out.println("filename : " + multipartFile.getOriginalFilename());
+			System.out.println("size : " + multipartFile.getSize());
+			System.out.println("----------------file end------------");
+		}
+		}
+		fileutils.parseInsertFileInfoAjax(multipartHttpServletRequest);
+		return "aa";
+		
+	}
+	*/
+	
+	// 아작스 업로드 처리매핑
+	@ResponseBody // view가아닌 data 리턴
+	@RequestMapping(value="/board/upload" , method=RequestMethod.POST, produces="text/plain;charset=utf-8")
+	public ResponseEntity<String> uploadAjax(MultipartFile file) throws Exception {
+		
+		System.out.println("originalName :" + file.getOriginalFilename());
+		System.out.println("size : " +file.getSize());
+		System.out.println("contentType :" +file.getContentType());
+		System.out.println("uploadPath : " + uploadPath);
+		
+		return new ResponseEntity<String>(FileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes()), HttpStatus.OK);
+	}
+	
+	// 이미지 표시 매핑.
+	@ResponseBody // view가 아닌 data 리턴
+	@RequestMapping("/board/displayFile")
+	public ResponseEntity<byte[]> displayFile(String fileName) throws Exception {
+		
+		
+		System.out.println("*********************** displayFile 메소드 시작 *********************");
+		System.out.println("*********************** displayFile 메소드 시작 *********************");
+		System.out.println("*********************** displayFile 메소드 시작 *********************");
+		System.out.println("*********************** displayFile 메소드 시작 *********************");
+		//서버의 파일을 다운로드하기 위한 스트림
+		InputStream in = null; // java.io
+		ResponseEntity<byte[]> entity = null;
+		
+		try {
+			//확장자를 추출하여 formatName에 저장.
+			String formatName = fileName.substring(fileName.lastIndexOf(".") + 1);
+			// 추출한 확장자를 MediaUtil 클래스나 다른 클래스를 만들어서 이미지파일여부를 검사하고 리턴하기.
+			MediaType mType = MediaUtils.getMediaType(formatName);
+			//
+			
+			//헤더 구성 객체(외부에서 데이터를 주고받을 때에는 header와 body를 구성해야하기 때문에 )
+			HttpHeaders headers = new HttpHeaders();
+			//InputStream 생성
+			System.out.println("InputStream 할 경로 : " + uploadPath + fileName);
+			in = new FileInputStream(uploadPath + fileName);
+			
+			// 이미지 파일이면 if 쓰고
+			
+			//else 아니면 ( 일단은 이미지파일이라고 생각하고 코딩 )
+			headers.setContentType(mType);
+			entity = new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers,HttpStatus.OK);
+		
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			//HTTP 상태 코드()
+			entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
+		} finally {
+			in.close(); // 스트림 닫기.
+		}
+		
+		return entity;
+	}
+	
 	
 	//AJAX 호출 ( 댓글 등록)
 	@RequestMapping(value="/board/reply/save",method=RequestMethod.POST)
 	@ResponseBody
-	public Object boardReplySave(@RequestParam Map<String, Object> paramMap) {
+	public Object boardReplySave(@RequestParam Map<String, Object> paramMap,HttpServletRequest request) {
 		System.out.println("댓글 AJAX 호출()");
-		System.out.println(paramMap.get("reply_writer"));
-		System.out.println(paramMap.get("reply_password"));
+		HttpSession session = request.getSession();
+		
+		String Nickname = (String)session.getAttribute("nickname");
+		paramMap.put("reply_writer", Nickname);
 		//리턴 값
 		Map<String, Object> retVal = new HashMap<String,Object>();
 		
 		//패스워드 암호화
-		ShaPasswordEncoder encoder = new ShaPasswordEncoder(256);
-		String password = encoder.encodePassword(paramMap.get("reply_password").toString(), null);
-		paramMap.put("reply_password", password);
+//		ShaPasswordEncoder encoder = new ShaPasswordEncoder(256);
+//		String password = encoder.encodePassword(paramMap.get("reply_password").toString(), null);
+//		paramMap.put("reply_password", password);
+		
 		//정보 입력
 		int result = boardService.regReply(paramMap);
 		
