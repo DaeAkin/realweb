@@ -57,7 +57,7 @@ public class MemberDaoImpl implements MemberDao{
 	@Override
 	public void insertMemberImage(Map<String, Object> paramMap) {
 		// TODO Auto-generated method stub
-		 sqlSession.insert("insertImage", imageUrl);
+		 sqlSession.insert("insertImage", paramMap);
 	}
 	
 	

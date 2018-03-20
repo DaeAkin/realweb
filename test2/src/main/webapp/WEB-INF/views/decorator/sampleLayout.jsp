@@ -15,11 +15,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/main.css">
+<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/bootstrap.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/bootstrap-theme.min.css">
 
 
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-1.11.3.js"></script>
-	
+<script src="<%=request.getContextPath() %>/resources/js/fixedmenu.js" type="text/javascript"></script>
+
 	
 	
 <body>

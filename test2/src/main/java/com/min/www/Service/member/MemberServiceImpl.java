@@ -1,5 +1,6 @@
 package com.min.www.Service.member;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -92,16 +93,21 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public void memberImageUpload(String uploadPath, String originalName, byte[] fileData) throws Exception {
+	public void memberImageUpload(String user,String uploadPath, String originalName, byte[] fileData) throws Exception {
 		// TODO Auto-generated method stub
 		//이미자가 경로된 위치 값을 리턴받는 변수
 		String savedPath;
 		
 		savedPath = FileUtils.reSizeImage(uploadPath, originalName, fileData);
 		
+		//Mapper에 전달해줄 Map객체
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("id", user);
+		paramMap.put("IMAGEURL", savedPath);
+		
 		System.out.println("Fileutils에서 리턴 한 String 값 :" + savedPath);
 		//DB에 이미지가 저장된 url를 저장.
-		memberDao.insertMemberImage(savedPath);
+		memberDao.insertMemberImage(paramMap);
 		
 		
 		

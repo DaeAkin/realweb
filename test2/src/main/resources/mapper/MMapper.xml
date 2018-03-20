@@ -31,7 +31,8 @@
 		id,
 		password,
 		nickname,
-		email
+		email,
+		imageurl
 	from
 		member
 	where id=#{id}
@@ -48,7 +49,7 @@
 	where nickname=#{nickname}
 </select>
 
-<insert id="insertImage" parameterType="java.lang.String" useGeneratedKeys="true" keyProperty="id">
+<insert id="insertImage" parameterType="java.util.HashMap" >
 
 	insert into member (
 	    id,

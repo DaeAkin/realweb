@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
     
@@ -97,13 +98,14 @@
     <table id="memberC">
     ${member.id }
     ${member.nickname}
+    ${member.imageurl }
         <tr><td>아이디</td> <td><input type="text" id="id" name="id" length="12" readonly="readonly" value="${member.id }">   </td></tr>
-        <tr><td>닉네임</td> <td><input type="text" id="id" name="nickname" length="12" readonly="readonly" value="${member.nickname }">   </td></tr>
+        <tr><td>닉네임</td> <td><input type="text" id="nickname" name="nickname" length="12" readonly="readonly" value="${member.nickname }">   </td></tr>
         <tr><td> 비밀번호 </td> <td><input type="password" id="password" name="password" placeholder="패스워드" oninput="checkPwd()"> </td></tr>
         <tr> <td> 비밀번호 확인  </td><td><input type="password" id="password1" name="password1" placeholder="패스워드" oninput="checkPwd()" >  <span id="message"> </span></td>
         <tr> <td> e-mail</td><td> <input type="text" id="email" name="email" value="${member.email }"></td>
         </tr>
-        <tr><td>이미지</td><td><img src="" width="200px" heigh="200px"> <input type="file" name="uploadFile" id="uploadFile" accept="image/*"> <input type="button" value="업로드" name="fileupload" id="fileupload" /></td></tr>
+        <tr><td>이미지</td><td><img src="<%=request.getContextPath() %>/resources/css/IMG_1255.jpg" width="200px" heigh="200px"> <input type="file" name="uploadFile" id="uploadFile" accept="image/*"> <input type="button" value="업로드" name="fileupload" id="fileupload" /></td></tr>
 
     </table>
         <hr>
