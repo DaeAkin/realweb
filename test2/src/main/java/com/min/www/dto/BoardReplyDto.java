@@ -13,6 +13,7 @@ public class BoardReplyDto {
 	private String reply_writer;
 	private String reply_password;
 	private Date register_datetime;
+	private String IMAGEURL;
 	
 	
 	
@@ -21,11 +22,20 @@ public class BoardReplyDto {
 	}
 	
 	public BoardReplyDto(String reply_id,String board_id,String parent_id,String depth
-			,String reply_content,String reply_writer,String reply_password,Date register_datetime) {
+			,String reply_content,String reply_writer,String reply_password,Date register_datetime,
+			String IMAGEURL) {
 		// TODO Auto-generated constructor stub
 	}
 	
 	
+	public String getIMAGEURL() {
+		return IMAGEURL;
+	}
+
+	public void setIMAGEURL(String iMAGEURL) {
+		IMAGEURL = iMAGEURL;
+	}
+
 	public String getReply_id() {
 		return reply_id;
 	}

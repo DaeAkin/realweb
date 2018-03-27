@@ -1,3 +1,5 @@
+<%@page import="com.min.www.dto.member.MemberDto"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -135,24 +137,22 @@
 </head>
 <body>
 
-${name }
-${nickname }asd
 
-asdasda
+
 	<form class="form-inline" id="frmSearch" action="<%=request.getContextPath()%>/board/list">
 		<input type="hidden" id="startPage" name="startPage" value="">
 		<!-- 페이징을 위한 hidden 타입 추가 -->
 		<input type="hidden" id="visiblePages" name="visiblePages" value="">
 		<!-- 페이징을 위한 hidden타입 추가  -->
 		<div align="center">
-			<table width="1200px">
+			<table width="1000px">
 				<tr>
 					<td align="right">
 						<button type="button" id="write" name="write">글 작성</button>
 					</td>
 				</tr>
 			</table>
-			<table id="board" width="1200px">
+			<table id="board" width="1000px">
 				<tr>
 					<th width="40px" style="word-break: break-all">No</th>
 					<th width="890px" >제목</th>

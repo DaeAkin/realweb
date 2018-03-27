@@ -52,6 +52,12 @@ public class BoardController {
 	@Resource(name="uploadPath")
 	String uploadPath;
 	
+	
+	@RequestMapping(value="/*")
+	public void toDo() {
+		System.out.println("toDo 실행");
+	}
+	
 	@RequestMapping(value = "/board/write")
 	public String boardwrite() {
 		

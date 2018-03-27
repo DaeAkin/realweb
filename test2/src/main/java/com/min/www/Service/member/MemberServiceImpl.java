@@ -57,12 +57,16 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public int memberLogin(Map<String, Object> paramMap,HttpServletRequest request) {
+	public int memberLogin(Map<String, Object> paramMap,HttpServletRequest request,Model model) {
 		// TODO Auto-generated method stub
 		int result = 0;
 		HttpSession session = request.getSession();
 		
 		MemberDto memberDto = memberDao.getMember(paramMap,request);
+		
+		
+		Map<String, Object> memberMap = new HashMap<>();
+		
 
 		
 	
@@ -73,9 +77,15 @@ public class MemberServiceImpl implements MemberService{
 			session.setAttribute("nickname", memberDto.getNickname());
 			System.out.println("아이디 비밀번호 인증 완료");
 			System.out.println("인증된 닉네임 : + " 	+ memberDto.getNickname());
-			request.setAttribute("requestId", memberDto.getId());
-			request.setAttribute("nickname",memberDto.getNickname() );
-			request.setAttribute("email",memberDto.getEmail());
+			memberMap.put("id", memberDto.getId());
+			memberMap.put("nickname", memberDto.getNickname());
+			memberMap.put("email", memberDto.getEmail());
+			memberMap.put("IMAGEURL", memberDto.getImageurl());
+			model.addAttribute("check","check");
+			model.addAllAttributes(memberMap);
+			System.out.println(model.containsAttribute("IMAGEURL"));
+			
+			
 			
 			return result = 1;
 		} else {

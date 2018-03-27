@@ -77,14 +77,16 @@
 		parent_id,
 		depth,
 		reply_content,
-		reply_writer
+		reply_writer,
+		IMAGEURL
 
 	)values (
 		#{board_id},
 		#{parent_id},
 		#{depth},
 		#{reply_content},
-		#{reply_writer}
+		#{reply_writer},
+		#{IMAGEURL}
 	
 	 )
 	</insert>
@@ -96,7 +98,8 @@
 			depth,
 			reply_content,
 			reply_writer,
-			reply_password
+			reply_password,
+			IMAGEURL
 		from
 			freeboardreply
 		where

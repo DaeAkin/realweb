@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.min.www.Service.member.MemberService;
+import com.min.www.dto.member.MemberDto;
 import com.min.www.util.FileUtils;
 
 @Controller
@@ -69,6 +70,7 @@ public class MController {
 		
 		if(result == 0) {
 			reVal.put("code", "OK");
+			reVal.put(key, value)
 		} else {
 			reVal.put("code", "FAIL");
 			
@@ -108,7 +110,7 @@ public class MController {
 		Map<String, Object> retVal = new HashMap<String, Object>();
 		
 		//1. sql문에 대입하여 아이디 확인 작업 서비스에서 처리.
-		int reVal = memberService.memberLogin(paramMap,request);
+		int reVal = memberService.memberLogin(paramMap,request,model);
 		
 		//로그인 했을 때 닉네임으로 뜨게하고싶으면
 		//request에 넣어줘야함 가져와서 
@@ -119,14 +121,22 @@ public class MController {
 		if(reVal != 0) {
 			session.setAttribute("loginuser", paramMap.get("id"));
 			
+			MemberDto memberInfo = memberService.getMember(paramMap, request);
+			// 로그인 객체 세션 생성
+			session.setAttribute("memberInfo", memberInfo);
+			
+			
 			retVal.put("code", "OK");
+			
+			
 			// 세션 이름 = loginuser에 id를 넣어줌.
 		
 			//redirect로 메인메이피로 넘어가기는 jsp에서 처리.
 			System.out.println(paramMap.get("id") + "님이 로그인.");
 		
 			
-		} 
+		}
+		
 		model.addAttribute("nickname", request.getAttribute("nickname"));
 		model.addAttribute("hi","hi");	
 		System.out.println("닉네임은? :" + request.getAttribute("nickname"));

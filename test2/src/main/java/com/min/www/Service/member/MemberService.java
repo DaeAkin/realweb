@@ -6,6 +6,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.ui.Model;
+
 import com.min.www.dto.member.MemberDto;
 
 public interface MemberService {
@@ -20,7 +22,7 @@ public interface MemberService {
 	
 	int memberIdCheck(Map<String, Object> paramMap);
 	
-	int memberLogin(Map<String, Object>	paramMap,HttpServletRequest request);
+	int memberLogin(Map<String, Object>	paramMap,HttpServletRequest request,Model model);
 	
 	int memberNickCheck(Map<String, Object> paramMap);
 	

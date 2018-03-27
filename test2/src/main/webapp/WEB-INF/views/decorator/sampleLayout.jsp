@@ -19,16 +19,23 @@
 <link rel="stylesheet" href="<%=request.getContextPath() %>/resources/css/bootstrap-theme.min.css">
 
 
+
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-1.11.3.js"></script>
-<script src="<%=request.getContextPath() %>/resources/js/fixedmenu.js" type="text/javascript"></script>
 
+<script type="text/javascript" src="<%=request.getContextPath() %>/resources/js/bootstrap.min.js"></script>
 	
 	
 <body>
   
 <tiles:insertAttribute name="menu"/>
+
+<%-- <tiles:insertAttribute name="menuex"/> --%>
+
+<tiles:insertAttribute name="sidebar"/>
+<div class="content">
 <tiles:insertAttribute name="content"/>
+</div>
 <tiles:insertAttribute name="footer"/>
 </body>
 </html>

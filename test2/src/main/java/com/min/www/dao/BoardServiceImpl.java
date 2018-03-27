@@ -61,6 +61,9 @@ public class BoardServiceImpl implements BoardService{
 		List<BoardReplyDto> boardReplyList = boardDao.getReplyList(paramMap);
 		//mysql서의계층적 쿼리 만들기
 		
+
+	
+
 		//부모
 		List<BoardReplyDto> boardReplyListParent = new ArrayList<BoardReplyDto>();
 		//자식

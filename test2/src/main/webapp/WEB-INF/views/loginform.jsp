@@ -72,7 +72,25 @@
 
 
 <body>
-    
+
+ <div class="container">
+
+      <form class="form-signin" id="loginform" method="post" action="<%=request.getContextPath() %>/member/login" >
+        <h2 class="form-signin-heading">로그인</h2>
+        <label for="id" class="sr-only">ID</label>
+        <input type="text" id="id" name="id" class="form-control" placeholder="ID" required autofocus>
+        <label for="password" class="sr-only">Password</label>
+        <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me"> 아이디 기억하기
+          </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="button" id="submit">로그인</button>
+      </form>
+
+    </div> <!-- /container -->
+    <!--  
     <fieldset>
     <legend>로그인</legend>
         <form name="loginform" id="loginform" method="post" action="/member/login"> 
@@ -89,4 +107,5 @@
         </table>
         </form>
     </fieldset>
+    -->
 </body>

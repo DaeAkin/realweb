@@ -1,7 +1,8 @@
+<%@page import="com.min.www.dto.member.MemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -36,8 +37,10 @@
 					board_id				:	$("#board_id").val(),
 					parent_id			:	"0",
 					depth				:	"0",
-					reply_password		:	$("#reply_password").val(),
-					reply_content		:	reply_content
+					reply_content		:	reply_content,
+					reply_writer 		:	$("#reply_writer").val(),
+					IMAGEURL				: $("#reply_image").attr("src")
+
 					
 			};
 			
@@ -402,9 +405,12 @@
 }
 </style>
 <body>
+	<%MemberDto memberInfo= (MemberDto)session.getAttribute("memberInfo"); %>
+	<%=memberInfo.getNickname() %>
+
 	<input type="hidden" id="board_id" name="board_id"
 		value="${boardView.id}" />
-	<div align="center">
+	<div>
 		<br> <br>
 		<table width="1200px" id="boardmain">
 			<tr>
@@ -425,17 +431,18 @@
 				<td colspan="2" valign="top">${boardView.content }</td>
 			</tr>
 		</table>
+		<!--  
 		<table id="boardreply" width="1200px">
 			<tr reply_type="all">
-				<!--  뒤에 댓글 붙이기 쉽게 선언  -->
+				<!--  뒤에 댓글 붙이기 쉽게 선언  
 				<td colspan="4"></td>
-			</tr>
+			</tr> -
 			<!-- 댓글이 들어갈 공간  -->
 			<c:forEach var="replyList" items="${replyList }" varStatus="status">
 			
 			<div class="media">
  					 <div class="media-left">
-					<a href="#"> <img class="media-object" src="<%=request.getContextPath() %>/resources/image/64x64.svg"
+					<a href="#"> <img class="media-object" src="${replyList.IMAGEURL }"
 						alt="...">
 					</a>
 					</div>
@@ -463,7 +470,33 @@
 				</tr>
 				 -->
 			</c:forEach>
+			<!--  
 		</table>
+		-->
+		<%if(memberInfo != null) { %>
+		
+		<div class="media">
+	
+ 					 <div class="media-left">
+					<a href="#"> <img class="media-object" id="reply_image" src="<%=request.getContextPath() %>/resources/imageupload/<%=memberInfo.getImageurl() %>"
+						alt="...">
+					</a>
+					</div>
+				<div class="media-body">
+					<h5 class="media-heading" id="reply_writer" name="reply_writer"><%=memberInfo.getNickname() %></h5>
+					
+					<textarea id="reply_content" name="reply_content" rows="4"
+						cols="100" placeholder="댓글을 입력하세요."></textarea>
+
+					<button id="reply_save" name="reply_save">댓글 등록</button>
+					
+				</div>
+				
+				</div>
+				
+				<%} %>
+				
+				<!-- 
 		<table id="boardreplywrite" width="1200px" bordercolor="#46AA46">
 			<tr>
 				<td>사용자</td>
@@ -479,6 +512,7 @@
 			</tr>
 
 		</table>
+		-->
 
 	</div>
 

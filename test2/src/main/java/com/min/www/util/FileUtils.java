@@ -144,7 +144,7 @@ public class FileUtils {
 		// UUID 발급
 		UUID uuid = UUID.randomUUID();
 		// 저장할 파일명 = UUID + 원본이름
-		String fileName = uuid.toString() + "_" + originalName;
+		String fileName = uuid.toString() + originalName.substring(originalName.lastIndexOf("."));
 		// 파일 경로를 받아 파일객체 생성
 		File target = new File(uploadPath + fileName);
 		 /*임시 디렉토리에 업로드된 파일을
@@ -164,7 +164,7 @@ public class FileUtils {
 		// 이미지를 읽기 위한 버퍼
 		BufferedImage sourceImg = ImageIO.read(new File(uploadPath, fileName));
 		// 100픽셀 단위의 썸네일 생성
-		BufferedImage destImg = Scalr.resize(sourceImg, 100, 100, null);
+		BufferedImage destImg = Scalr.resize(sourceImg, 64, 64, null);
 		// 썸네일의 이름을 생성 ( 원본 파일명에 's_'를 붙임)
 		String thumbnailName = uploadPath + "s_" + fileName;
 		File newFile = new File(thumbnailName);
@@ -178,8 +178,8 @@ public class FileUtils {
 		
 		target.delete();
 		
-		// DB에 파일 저장위치 리턴
-		return thumbnailName;
+		// DB에 파일 저장위치 리턴 (경로말고 이름만)
+		return "s_"+fileName;
 		
 		
 		

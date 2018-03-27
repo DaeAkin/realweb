@@ -27,5 +27,7 @@ public interface BoardService {
 	int getBoardCheck(Map<String, Object> paramMap);
 	
 	int delBoard(Map<String, Object> paramMap);
+	
+	
 
 }
