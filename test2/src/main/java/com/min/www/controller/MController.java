@@ -44,13 +44,11 @@ public class MController {
 		System.out.println("ID : " +paramMap.get("id"));
 		System.out.println("PASSWORD : " + paramMap.get("password").toString());
 		System.out.println("email : " +paramMap.get("email").toString());
-	
+		System.out.println("닉네임  :"+ paramMap.get("nickname"));
 		
 		System.out.println("insert 성공 메세지 : " + 
 		memberService.insertMember(paramMap));
-		
-		System.out.println("성공");
-		
+
 		
 		
 		return "boardList";
@@ -70,7 +68,6 @@ public class MController {
 		
 		if(result == 0) {
 			reVal.put("code", "OK");
-			reVal.put(key, value)
 		} else {
 			reVal.put("code", "FAIL");
 			
@@ -80,7 +77,7 @@ public class MController {
 		return reVal;
 	}
 	
-	/*
+	
 	@RequestMapping(value="/member/nickCheck")
 	@ResponseBody
 	public Object memberNickCheck(@RequestParam Map<String, Object> paramMap) {
@@ -89,13 +86,19 @@ public class MController {
 		
 		Map<String, Object> reVal = new HashMap<>();
 		
-		int result
+		int result = memberService.memberNickCheck(paramMap);
 		
+		if(result == 0) {
+			reVal.put("code", "OK");
+		} else {
+			reVal.put("code", "FAIL");
+			
+		}
 		
 		return reVal;
 	}
 	
-	*/
+	
 	
 	@RequestMapping(value="/member/loginform")
 	public String memberLoginform() {
@@ -124,7 +127,7 @@ public class MController {
 			MemberDto memberInfo = memberService.getMember(paramMap, request);
 			// 로그인 객체 세션 생성
 			session.setAttribute("memberInfo", memberInfo);
-			
+			session.setAttribute("nickname", memberInfo.getNickname());
 			
 			retVal.put("code", "OK");
 			

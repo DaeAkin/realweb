@@ -84,7 +84,7 @@
        	
        	console.log("클릭 되었니?");
        	
-       if($("#id").val().trim() == "") {
+       if($(".nickname").val().trim() == "") {
     	   	alert("닉네임을 입력해주세요");
     	   	return false;
        } 
@@ -138,6 +138,7 @@
            $("#memberSubmit").click(function() {
             
             $("#membercheck").submit();
+            location.href = "<%=request.getContextPath()%>/board/list";
             
         })
     })
@@ -211,7 +212,7 @@
     <form id="memberCheck" action="<%=request.getContextPath()%>/member/check" method="POST">
     <table id="memberC">
         <tr><td>아이디</td> <td><input type="text" id="id" name="id" length="12" placeholder="아이디">    <input type="button" value="아이디 중복확인" id="memberIdcheck" name="memberIdcheck"> </td></tr>
-        <tr><td>닉네임</td> <td><input type="text" id="id" name="nickname" length="12" placeholder="닉네임">    <input type="button" value="닉네임 중복확인" id="memberNickcheck" name="memberNickcheck"> </td></tr>
+        <tr><td>닉네임</td> <td><input type="text" id="nickname" name="nickname" length="12" placeholder="닉네임">    <input type="button" value="닉네임 중복확인" id="memberNickcheck" name="memberNickcheck"> </td></tr>
         <tr><td> 비밀번호 </td> <td><input type="password" id="password" name="password" placeholder="패스워드" oninput="checkPwd()"> </td></tr>
         <tr> <td> 비밀번호 확인  </td><td><input type="password" id="password1" name="password1" placeholder="패스워드" oninput="checkPwd()" >  <span id="message"> </span></td>
         <tr> <td> e-mail</td><td> <input type="email" id="email" name="email" placeholder="이메일"></td>

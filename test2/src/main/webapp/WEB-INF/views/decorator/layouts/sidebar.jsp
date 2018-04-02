@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<span class="sidebar">
+<div class="sidebar">
     <div class="commuitybest">
     <p style="font: 20px;text-decoration: underline;"> 커뮤니티 베스트</p>
     <table>
@@ -30,8 +30,8 @@
     </table>
     
     </div>
-    
-</span>
+   </div>
+
 
 </body>
 </html>

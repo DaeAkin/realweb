@@ -7,10 +7,12 @@
 	insert into member(
 		id,
 		password,
+		nickname,
 		email
 		) values (
 		#{id},
 		#{password},
+		#{nickname},
 		#{email}
 		)
 	

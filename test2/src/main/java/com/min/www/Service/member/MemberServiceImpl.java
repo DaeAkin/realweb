@@ -55,6 +55,13 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		return memberDao.memberIdCheck(paramMap);
 	}
+	
+	@Override
+	public int memberNickCheck(Map<String, Object> paramMap) {
+		// TODO Auto-generated method stub
+		return memberDao.memberNickCheck(paramMap);
+	}
+
 
 	@Override
 	public int memberLogin(Map<String, Object> paramMap,HttpServletRequest request,Model model) {
@@ -96,11 +103,6 @@ public class MemberServiceImpl implements MemberService{
 		
 	}
 
-	@Override
-	public int memberNickCheck(Map<String, Object> paramMap) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	@Override
 	public void memberImageUpload(String user,String uploadPath, String originalName, byte[] fileData) throws Exception {
